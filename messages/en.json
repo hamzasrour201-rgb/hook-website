@@ -1,0 +1,81 @@
+{
+  "nav": {
+    "work": "WORK",
+    "services": "SERVICES",
+    "process": "PROCESS",
+    "contact": "CONTACT",
+    "cta": "LET'S TALK →"
+  },
+  "hero": {
+    "badge": "BOOKING Q2 · 2026",
+    "headline1": "WE",
+    "headline2": "/",
+    "headline3": "BUILD",
+    "headline4": "/",
+    "headline5": "RESULTS.",
+    "headline6": "NOT JUST",
+    "headline7": "WEBSITES.",
+    "subhead": "A Jordan-based growth studio for brands that want more than pretty pixels. Ads. SEO. AI. Conversion. The whole stack — shipped faster.",
+    "cta1": "START A PROJECT →",
+    "cta2": "SEE CASE STUDIES"
+  },
+  "stats": {
+    "clients": "Active Clients",
+    "managed": "JOD Managed",
+    "retention": "Retention Rate",
+    "countries": "Countries Served"
+  },
+  "services": {
+    "heading1": "NINE WAYS",
+    "heading2": "/ TO GROW.",
+    "readMore": "READ MORE →"
+  },
+  "process": {
+    "heading1": "FROM BRIEF TO",
+    "heading2": "/ BREAKTHROUGH."
+  },
+  "testimonials": {
+    "heading1": "THEY DON'T JUST",
+    "heading2": "/ HIRE US. THEY STAY."
+  },
+  "clients": {
+    "label": "TRUSTED BY 150+ BRANDS ACROSS MENA · USA · TURKEY"
+  },
+  "cta": {
+    "heading1": "LET'S BUILD",
+    "heading2": "SOMETHING LOUD.",
+    "subtext": "Free 30-minute strategy call. No pitch, just ideas. If we're a fit, we'll talk about what's next.",
+    "button": "BOOK YOUR CALL →"
+  },
+  "footer": {
+    "copyright": "© 2024 Hook Marketing. All rights reserved.",
+    "tagline": "A Jordan-based growth studio serving brands across MENA, the US, and Turkey. Est. 2020."
+  },
+  "contact": {
+    "heading": "LET'S TALK.",
+    "subheading": "Tell us about your project and we'll get back within 24 hours.",
+    "name": "Your Name",
+    "email": "Your Email",
+    "phone": "Your Phone",
+    "service": "Service You're Interested In",
+    "message": "Tell us about your project",
+    "submit": "SEND MESSAGE →",
+    "whatsapp": "CHAT ON WHATSAPP →",
+    "orText": "Or reach us directly"
+  },
+  "about": {
+    "heading1": "BUILT IN AMMAN.",
+    "heading2": "BUILT FOR THE WORLD.",
+    "story": "Hook Marketing was founded in 2020 by Hamza with one conviction: marketing agencies were over-charging and under-delivering. Five years and 150+ clients later, we've built one of Jordan's most results-focused digital growth studios — serving brands from Amman to Riyadh, Dubai to New York.",
+    "mission": "Our mission is simple: make every dollar your brand spends on marketing work harder than the one before it.",
+    "values": {
+      "heading": "HOW WE WORK.",
+      "items": [
+        { "title": "EVIDENCE FIRST", "desc": "Every decision is backed by data. We don't guess — we test, measure, and iterate." },
+        { "title": "SPEED MATTERS", "desc": "The market doesn't wait. Neither do we. Fast execution with zero compromise on quality." },
+        { "title": "NO BS", "desc": "Clear communication, honest reporting, and no vanity metrics. You know exactly where you stand." },
+        { "title": "YOUR GROWTH IS OURS", "desc": "We succeed when you succeed. That's why 98% of our clients stay after year one." }
+      ]
+    }
+  }
+}

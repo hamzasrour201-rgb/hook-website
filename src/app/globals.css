@@ -1,0 +1,202 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: #0F0F0F;
+  --surface: #1A1A1A;
+  --orange: #FF4D1F;
+  --yellow: #FFD84D;
+  --green: #32D74B;
+  --text: #FFFFFF;
+  --muted: #888888;
+  --border: rgba(255, 255, 255, 0.1);
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  scroll-behavior: auto; /* Lenis handles smooth scrolling */
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: 'Space Grotesk', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* Noise overlay */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  opacity: 0.04;
+  pointer-events: none;
+  z-index: 9999;
+  mix-blend-mode: overlay;
+  will-change: auto;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--orange);
+}
+
+/* Selection */
+::selection {
+  background: var(--orange);
+  color: #000;
+}
+
+/* ---- Utility classes ---- */
+
+.font-mono {
+  font-family: 'JetBrains Mono', 'Courier New', monospace;
+}
+
+/* Hard brutalist shadow on hover */
+.hover-brutal:hover {
+  transform: translate(-3px, -3px);
+  box-shadow: 6px 6px 0 var(--orange);
+}
+
+/* Orange fill on hover (cards) */
+.hover-fill:hover {
+  background-color: var(--orange);
+  color: #000;
+}
+.hover-fill:hover * {
+  color: #000 !important;
+  border-color: rgba(0,0,0,0.2) !important;
+}
+
+/* Marquee container — pause on hover */
+.marquee-outer:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+/* Skewed orange underline block */
+.skew-highlight {
+  position: relative;
+  display: inline-block;
+}
+.skew-highlight::before {
+  content: '';
+  position: absolute;
+  inset: -2px -6px;
+  background: var(--orange);
+  transform: skewX(-8deg);
+  z-index: -1;
+}
+
+/* Sticker float animation — individual delays via CSS vars */
+.sticker-float {
+  animation: stickerFloat var(--dur, 7s) ease-in-out infinite;
+  animation-delay: var(--delay, 0s);
+}
+
+@keyframes stickerFloat {
+  0%, 100% { transform: translateY(0) rotate(var(--rot, 0deg)); }
+  50%       { transform: translateY(-12px) rotate(var(--rot, 0deg)); }
+}
+
+/* Intro loader */
+.loader-curtain {
+  position: fixed;
+  inset: 0;
+  background: #000;
+  z-index: 10000;
+  transform-origin: top;
+}
+
+/* Count-up text */
+.count-up {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Process step arrows */
+.process-arrow {
+  transition: transform 0.3s ease;
+}
+.process-card:hover .process-arrow {
+  transform: translateX(6px);
+}
+
+/* Service card number */
+.service-number {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.05em;
+}
+
+/* CTA banner star */
+.deco-star {
+  position: absolute;
+  color: rgba(0,0,0,0.12);
+  font-size: 120px;
+  line-height: 1;
+  user-select: none;
+  pointer-events: none;
+}
+
+/* Pill label */
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid var(--border);
+  border-radius: 100px;
+  padding: 6px 14px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  color: var(--text);
+}
+
+/* Lenis smooth scroll */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .marquee-track {
+    animation: none !important;
+    display: flex;
+    gap: 2rem;
+  }
+}

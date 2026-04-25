@@ -1,0 +1,26 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(dir \"C:\\\\Users\\\\Hamza\\\\OneDrive\\\\سطح المكتب\\\\HOOK WEPSIT\")",
+      "Bash(npx create-next-app@latest . --typescript --tailwind --eslint --app --src-dir --import-alias \"@/*\" --no-git)",
+      "PowerShell(winget install OpenJS.NodeJS.LTS --silent --accept-source-agreements --accept-package-agreements 2>&1)",
+      "PowerShell($env:PATH = \"C:\\\\Program Files\\\\nodejs;\" + $env:PATH; node --version; npm --version)",
+      "PowerShell(Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser -Force; $env:PATH = \"C:\\\\Program Files\\\\nodejs;\" + $env:PATH; node --version; npm --version)",
+      "PowerShell($env:PATH = \"C:\\\\Program Files\\\\nodejs;\" + $env:PATH; Set-Location \"C:\\\\Users\\\\Hamza\\\\OneDrive\\\\سطح المكتب\\\\HOOK WEPSIT\"; npm install 2>&1 | Select-Object -Last 20)",
+      "PowerShell($env:PATH = \"C:\\\\Program Files\\\\nodejs;\" + $env:PATH; Set-Location \"C:\\\\Users\\\\Hamza\\\\OneDrive\\\\سطح المكتب\\\\HOOK WEPSIT\"; npm run build 2>&1 | Select-Object -Last 50)",
+      "PowerShell($env:PATH = \"C:\\\\Program Files\\\\nodejs;\" + $env:PATH; Set-Location \"C:\\\\Users\\\\Hamza\\\\OneDrive\\\\سطح المكتب\\\\HOOK WEPSIT\"; npm run build 2>&1 | Select-Object -Last 60)",
+      "PowerShell($env:PATH = \"C:\\\\Program Files\\\\nodejs;\" + $env:PATH; Set-Location \"C:\\\\Users\\\\Hamza\\\\OneDrive\\\\سطح المكتب\\\\HOOK WEPSIT\"; npm run build 2>&1 | Select-Object -Last 80)",
+      "mcp__Claude_Preview__preview_start",
+      "PowerShell($env:PATH = \"C:\\\\Program Files\\\\nodejs;\" + $env:PATH; Set-Location \"C:\\\\Users\\\\Hamza\\\\OneDrive\\\\سطح المكتب\\\\HOOK WEPSIT\"; Start-Job -Name \"nextdev\" -ScriptBlock { $env:PATH = \"C:\\\\Program Files\\\\nodejs;\" + $env:PATH; Set-Location \"C:\\\\Users\\\\Hamza\\\\OneDrive\\\\سطح المكتب\\\\HOOK WEPSIT\"; npm run dev 2>&1 } | Out-Null; Start-Sleep -Seconds 12; Receive-Job -Name \"nextdev\" -Keep | Select-Object -Last 10)",
+      "mcp__Claude_in_Chrome__tabs_context_mcp",
+      "PowerShell($env:PATH = \"C:\\\\Program Files\\\\nodejs;\" + $env:PATH; Set-Location \"C:\\\\Users\\\\Hamza\\\\OneDrive\\\\سطح المكتب\\\\HOOK WEPSIT\"; npm run build 2>&1 | Select-Object -Last 40)",
+      "PowerShell($env:PATH = \"C:\\\\Program Files\\\\nodejs;\" + $env:PATH; Set-Location \"C:\\\\Users\\\\Hamza\\\\OneDrive\\\\سطح المكتب\\\\HOOK WEPSIT\"; npm install 2>&1 | Select-Object -Last 5)",
+      "PowerShell($env:PATH = \"C:\\\\Program Files\\\\nodejs;\" + $env:PATH; Set-Location \"C:\\\\Users\\\\Hamza\\\\OneDrive\\\\سطح المكتب\\\\HOOK WEPSIT\"; npm run dev 2>&1)",
+      "Bash(npm run *)",
+      "PowerShell($env:PATH += \";C:\\\\Program Files\\\\nodejs\"; cd \"C:\\\\Users\\\\Hamza\\\\OneDrive\\\\سطح المكتب\\\\HOOK WEPSIT\"; npm run build 2>&1)",
+      "PowerShell($env:PATH += \";C:\\\\Program Files\\\\nodejs\"; Remove-Item -Recurse -Force \"C:\\\\Users\\\\Hamza\\\\OneDrive\\\\سطح المكتب\\\\HOOK WEPSIT\\\\.next\" -ErrorAction SilentlyContinue; cd \"C:\\\\Users\\\\Hamza\\\\OneDrive\\\\سطح المكتب\\\\HOOK WEPSIT\"; npm run build 2>&1)",
+      "PowerShell($env:PATH += \";C:\\\\Program Files\\\\nodejs\"; cd \"C:\\\\Users\\\\Hamza\\\\OneDrive\\\\سطح المكتب\\\\HOOK WEPSIT\"; npm install 2>&1)",
+      "PowerShell($env:PATH += \";C:\\\\Program Files\\\\nodejs\"; cd \"C:\\\\Users\\\\Hamza\\\\OneDrive\\\\سطح المكتب\\\\HOOK WEPSIT\"; npm run dev 2>&1)"
+    ]
+  }
+}
