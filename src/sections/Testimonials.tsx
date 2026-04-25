@@ -17,6 +17,8 @@ const AVATAR_GRADIENTS = [
   'from-blue-500 to-indigo-600',
 ]
 
+const DECK_ROTATIONS = [-1.5, 0.8, -2, 1.2, -0.6]
+
 export default function Testimonials() {
   const t = useTranslations('testimonials')
   const containerRef = useRef<HTMLDivElement>(null)
@@ -28,22 +30,18 @@ export default function Testimonials() {
   useGSAP(() => {
     gsap.fromTo(
       '.testimonial-card',
-      { opacity: 0, x: 40 },
+      { clipPath: 'inset(0 0 100% 0)', opacity: 0 },
       {
+        clipPath: 'inset(0 0 0% 0)',
         opacity: 1,
-        x: 0,
-        duration: 0.6,
+        duration: 0.65,
         stagger: 0.1,
-        ease: 'power2.out',
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: 'top 80%',
-        },
+        ease: 'power3.out',
+        scrollTrigger: { trigger: containerRef.current, start: 'top 80%' },
       }
     )
   }, { scope: containerRef })
 
-  // Drag-to-scroll
   const onMouseDown = (e: React.MouseEvent) => {
     isDragging.current = true
     startX.current = e.pageX - (trackRef.current?.offsetLeft ?? 0)
@@ -53,31 +51,20 @@ export default function Testimonials() {
     if (!isDragging.current || !trackRef.current) return
     e.preventDefault()
     const x = e.pageX - (trackRef.current.offsetLeft ?? 0)
-    const walk = (x - startX.current) * 1.2
-    trackRef.current.scrollLeft = scrollLeft.current - walk
+    trackRef.current.scrollLeft = scrollLeft.current - (x - startX.current) * 1.2
   }
   const stopDrag = () => { isDragging.current = false }
 
   return (
     <section ref={containerRef} id="testimonials" className="py-20 md:py-28 border-b border-white/10 overflow-hidden">
       <div className="max-w-[1400px] mx-auto px-6">
-        {/* Heading */}
         <div className="mb-12 md:mb-16">
-          <div className="flex items-center gap-3 mb-4">
-            <span
-              className="text-muted text-xs tracking-widest"
-              style={{ fontFamily: 'JetBrains Mono, monospace' }}
-            >
-              [ TESTIMONIALS ]
-            </span>
-          </div>
+          <span className="text-muted text-xs tracking-widest mb-4 block" style={{ fontFamily: 'JetBrains Mono, monospace' }}>
+            [ TESTIMONIALS ]
+          </span>
           <h2
             className="font-bold text-white"
-            style={{
-              fontSize: 'clamp(44px, 6vw, 88px)',
-              lineHeight: 0.92,
-              letterSpacing: '-0.04em',
-            }}
+            style={{ fontSize: 'clamp(44px, 6vw, 88px)', lineHeight: 0.92, letterSpacing: '-0.04em' }}
           >
             {t('heading1')}{' '}
             <span className="text-orange">{t('heading2')}</span>
@@ -85,7 +72,6 @@ export default function Testimonials() {
         </div>
       </div>
 
-      {/* Horizontal scrollable track */}
       <div
         ref={trackRef}
         className="flex gap-6 overflow-x-auto pb-4 cursor-grab active:cursor-grabbing select-none"
@@ -104,10 +90,13 @@ export default function Testimonials() {
         {testimonials.map((item, i) => (
           <div
             key={i}
-            className="testimonial-card flex-shrink-0 border border-white/10 p-6 md:p-8 flex flex-col gap-6"
-            style={{ width: 'clamp(280px, 80vw, 480px)' }}
+            className="testimonial-card flex-shrink-0 border border-white/10 p-6 md:p-8 flex flex-col gap-6 transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_20px_40px_rgba(0,0,0,0.5)] hover:border-orange/40"
+            style={{
+              width: 'clamp(280px, 80vw, 480px)',
+              transform: `rotate(${DECK_ROTATIONS[i % DECK_ROTATIONS.length]}deg)`,
+              transformOrigin: 'bottom center',
+            }}
           >
-            {/* Quote mark */}
             <div
               className="text-orange font-bold leading-none select-none"
               style={{ fontSize: 64, lineHeight: 0.8, fontFamily: 'Space Grotesk' }}
@@ -115,15 +104,8 @@ export default function Testimonials() {
             >
               &ldquo;
             </div>
-
-            {/* Quote */}
-            <p className="text-white text-base leading-relaxed flex-1">
-              {item.quote}
-            </p>
-
-            {/* Author */}
+            <p className="text-white text-base leading-relaxed flex-1">{item.quote}</p>
             <div className="flex items-center gap-4 border-t border-white/10 pt-5">
-              {/* Avatar */}
               <div
                 className={`w-10 h-10 rounded-full flex items-center justify-center text-xs font-bold bg-gradient-to-br ${AVATAR_GRADIENTS[i % AVATAR_GRADIENTS.length]} text-white flex-shrink-0`}
               >
@@ -131,10 +113,7 @@ export default function Testimonials() {
               </div>
               <div>
                 <div className="text-white font-medium text-sm">{item.name}</div>
-                <div
-                  className="text-muted text-xs tracking-wider"
-                  style={{ fontFamily: 'JetBrains Mono, monospace' }}
-                >
+                <div className="text-muted text-xs tracking-wider" style={{ fontFamily: 'JetBrains Mono, monospace' }}>
                   {item.role} · {item.location}
                 </div>
               </div>

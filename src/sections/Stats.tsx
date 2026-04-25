@@ -10,21 +10,13 @@ import { stats } from '@/content/site'
 
 gsap.registerPlugin(ScrollTrigger)
 
-function StatBox({
-  value,
-  suffix,
-  label,
-}: {
-  value: number
-  suffix: string
-  label: string
-}) {
+function StatBox({ value, suffix, label }: { value: number; suffix: string; label: string }) {
   const { count, ref } = useCountUp(value, 2000)
 
   return (
     <div
       ref={ref}
-      className="p-8 md:p-12 flex flex-col gap-2 group transition-all duration-150 cursor-default"
+      className="p-8 md:p-12 flex flex-col gap-2 cursor-default"
       style={{ transition: 'all 0.15s ease' }}
       onMouseEnter={(e) => {
         const el = e.currentTarget
@@ -41,16 +33,9 @@ function StatBox({
     >
       <span
         className="font-bold text-white count-up"
-        style={{
-          fontFamily: 'Space Grotesk',
-          fontSize: 'clamp(48px, 5vw, 80px)',
-          lineHeight: 1,
-          letterSpacing: '-0.04em',
-          color: 'inherit',
-        }}
+        style={{ fontFamily: 'Space Grotesk', fontSize: 'clamp(48px, 5vw, 80px)', lineHeight: 1, letterSpacing: '-0.04em', color: 'inherit' }}
       >
-        {count}
-        {suffix}
+        {count}{suffix}
       </span>
       <span
         className="text-muted text-sm tracking-wider uppercase"
@@ -65,23 +50,19 @@ function StatBox({
 export default function Stats() {
   const t = useTranslations('stats')
   const containerRef = useRef<HTMLDivElement>(null)
-
   const statLabels = [t('clients'), t('managed'), t('retention'), t('countries')]
 
   useGSAP(() => {
     gsap.fromTo(
       '.stat-box-wrapper',
-      { opacity: 0, y: 30 },
+      { clipPath: 'inset(0 0 100% 0)', opacity: 0 },
       {
+        clipPath: 'inset(0 0 0% 0)',
         opacity: 1,
-        y: 0,
-        duration: 0.6,
-        stagger: 0.12,
-        ease: 'power2.out',
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: 'top 80%',
-        },
+        duration: 0.7,
+        stagger: 0.14,
+        ease: 'power3.out',
+        scrollTrigger: { trigger: containerRef.current, start: 'top 80%' },
       }
     )
   }, { scope: containerRef })
@@ -91,11 +72,7 @@ export default function Stats() {
       <div className="grid grid-cols-2 lg:grid-cols-4 divide-x divide-y divide-white/10 border-b border-white/10">
         {stats.map((stat, i) => (
           <div key={i} className="stat-box-wrapper">
-            <StatBox
-              value={stat.value}
-              suffix={stat.suffix}
-              label={statLabels[i]}
-            />
+            <StatBox value={stat.value} suffix={stat.suffix} label={statLabels[i]} />
           </div>
         ))}
       </div>

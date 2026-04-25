@@ -12,23 +12,38 @@ gsap.registerPlugin(ScrollTrigger)
 export default function Process() {
   const t = useTranslations('process')
   const containerRef = useRef<HTMLDivElement>(null)
+  const lineRef = useRef<HTMLDivElement>(null)
 
   useGSAP(() => {
     gsap.fromTo(
       '.process-card',
-      { opacity: 0, y: 30 },
+      { clipPath: 'inset(0 0 100% 0)', opacity: 0 },
       {
+        clipPath: 'inset(0 0 0% 0)',
         opacity: 1,
-        y: 0,
-        duration: 0.5,
-        stagger: 0.12,
-        ease: 'power2.out',
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: 'top 75%',
-        },
+        duration: 0.6,
+        stagger: 0.14,
+        ease: 'power3.out',
+        scrollTrigger: { trigger: containerRef.current, start: 'top 75%' },
       }
     )
+
+    if (lineRef.current) {
+      gsap.fromTo(
+        lineRef.current,
+        { width: '0%' },
+        {
+          width: '100%',
+          ease: 'none',
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: 'top 60%',
+            end: 'center 40%',
+            scrub: 1.5,
+          },
+        }
+      )
+    }
   }, { scope: containerRef })
 
   return (
@@ -39,30 +54,28 @@ export default function Process() {
       style={{ backgroundColor: '#161616' }}
     >
       <div className="max-w-[1400px] mx-auto px-6">
-        {/* Heading */}
         <div className="mb-12 md:mb-16">
-          <div className="flex items-center gap-3 mb-4">
-            <span
-              className="text-muted text-xs tracking-widest"
-              style={{ fontFamily: 'JetBrains Mono, monospace' }}
-            >
-              [ PROCESS ]
-            </span>
-          </div>
+          <span className="text-muted text-xs tracking-widest mb-4 block" style={{ fontFamily: 'JetBrains Mono, monospace' }}>
+            [ PROCESS ]
+          </span>
           <h2
             className="font-bold text-white"
-            style={{
-              fontSize: 'clamp(44px, 6vw, 88px)',
-              lineHeight: 0.92,
-              letterSpacing: '-0.04em',
-            }}
+            style={{ fontSize: 'clamp(44px, 6vw, 88px)', lineHeight: 0.92, letterSpacing: '-0.04em' }}
           >
             {t('heading1')}{' '}
             <span className="text-orange">{t('heading2')}</span>
           </h2>
         </div>
 
-        {/* Steps */}
+        {/* SVG line draw — desktop only */}
+        <div className="hidden lg:block relative h-0.5 mb-0 bg-white/5 overflow-hidden">
+          <div
+            ref={lineRef}
+            className="absolute inset-y-0 left-0 bg-orange"
+            style={{ width: '0%', opacity: 0.6 }}
+          />
+        </div>
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 border-t border-l border-white/10">
           {processSteps.map((step, i) => (
             <div
@@ -81,28 +94,14 @@ export default function Process() {
                 el.style.zIndex = ''
               }}
             >
-              {/* Step number */}
-              <div
-                className="text-muted mb-6 text-xs tracking-widest"
-                style={{ fontFamily: 'JetBrains Mono, monospace' }}
-              >
+              <div className="text-muted mb-6 text-xs tracking-widest" style={{ fontFamily: 'JetBrains Mono, monospace' }}>
                 STEP {step.step}
               </div>
-
-              {/* Title */}
-              <h3
-                className="text-white font-bold text-2xl mb-4 tracking-tight"
-                style={{ letterSpacing: '-0.03em' }}
-              >
+              <h3 className="text-white font-bold text-2xl mb-4 tracking-tight" style={{ letterSpacing: '-0.03em' }}>
                 {step.title}
               </h3>
+              <p className="text-muted text-sm leading-relaxed">{step.description}</p>
 
-              {/* Description */}
-              <p className="text-muted text-sm leading-relaxed">
-                {step.description}
-              </p>
-
-              {/* Arrow right — desktop only */}
               {i < processSteps.length - 1 && (
                 <div
                   className="process-arrow absolute -right-3 top-1/2 -translate-y-1/2 w-6 h-6 bg-bg border border-white/20 flex items-center justify-center z-20 hidden lg:flex"
@@ -111,14 +110,8 @@ export default function Process() {
                   →
                 </div>
               )}
-              {/* Arrow down — mobile only (1-col stack) */}
               {i < processSteps.length - 1 && (
-                <div
-                  className="flex md:hidden justify-center mt-6 text-orange text-xl"
-                  aria-hidden
-                >
-                  ↓
-                </div>
+                <div className="flex md:hidden justify-center mt-6 text-orange text-xl" aria-hidden>↓</div>
               )}
             </div>
           ))}
