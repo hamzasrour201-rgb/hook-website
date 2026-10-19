@@ -8,7 +8,7 @@ export const siteConfig = {
   location: 'Amman, Jordan',
   email: 'info@hookmarketingjo.com',
   phones: ['+962 78 243 6291', '+962 79 159 0272'],
-  whatsapp: 'https://wa.me/9620782436291',
+  whatsapp: 'https://wa.me/962782436291',
   markets: ['Jordan', 'Saudi Arabia', 'Gulf (GCC)', 'USA', 'Turkey'],
 }
 
@@ -424,7 +424,7 @@ export const footer = {
   contact: {
     email: 'info@hookmarketingjo.com',
     phones: ['+962 78 243 6291', '+962 79 159 0272'],
-    whatsapp: 'https://wa.me/9620782436291',
+    whatsapp: 'https://wa.me/962782436291',
     address: 'Amman, Jordan',
   },
 }

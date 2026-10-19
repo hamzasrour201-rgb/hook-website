@@ -78,7 +78,7 @@ export default async function RootLayout({ children, params: { locale } }: RootL
               url: 'https://www.hookmarketingjo.com',
               telephone: '+962782436291',
               address: { '@type': 'PostalAddress', addressLocality: 'Amman', addressCountry: 'JO' },
-              sameAs: ['https://wa.me/9620782436291'],
+              sameAs: ['https://wa.me/962782436291'],
               openingHoursSpecification: { '@type': 'OpeningHoursSpecification', dayOfWeek: ['Monday','Tuesday','Wednesday','Thursday','Sunday'], opens: '09:00', closes: '18:00' },
               priceRange: '$$',
             }),
